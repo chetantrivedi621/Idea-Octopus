@@ -1,0 +1,275 @@
+.timeline-management-section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-icon {
+  font-size: 24px;
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.timeline-item {
+  background: white;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #e0e0e0;
+  transition: all 0.2s ease;
+}
+
+.timeline-item.active {
+  border-left-color: #4caf50;
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.timeline-item.completed {
+  border-left-color: #2196f3;
+  opacity: 0.8;
+}
+
+.timeline-item.upcoming {
+  border-left-color: #ff9800;
+}
+
+.timeline-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.timeline-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.timeline-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.timeline-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.timeline-item-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #424242;
+}
+
+.timeline-item-times {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.timeline-item-time {
+  font-size: 12px;
+  color: #757575;
+}
+
+.timeline-item-time strong {
+  color: #424242;
+  margin-right: 4px;
+}
+
+.timeline-item-time.no-time {
+  font-style: italic;
+  color: #bdbdbd;
+}
+
+.timeline-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.edit-round-button {
+  background: white;
+  color: #2196f3;
+  border: 2px solid #2196f3;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-round-button:hover {
+  background: #e3f2fd;
+}
+
+.start-round-button {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.start-round-button:hover {
+  background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.active-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #4caf50;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.completed-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #2196f3;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.timeline-edit-form {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.edit-form-group {
+  margin-bottom: 16px;
+}
+
+.edit-form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 8px;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.edit-input:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.set-now-button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 6px;
+  transition: all 0.2s ease;
+}
+
+.set-now-button:hover {
+  background: #45a049;
+  transform: translateY(-1px);
+}
+
+.edit-form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.save-button {
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background: #e0e0e0;
+  color: #424242;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #bdbdbd;
+}
+
+@media (max-width: 768px) {
+  .timeline-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-item-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .edit-round-button,
+  .start-round-button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+

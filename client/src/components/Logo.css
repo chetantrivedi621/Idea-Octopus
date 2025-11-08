@@ -1,0 +1,65 @@
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-fallback {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-graphic {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.logo-icon-left,
+.logo-icon-right {
+  font-size: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  color: #ffeb3b;
+}
+
+.logo-icon-left {
+  transform: rotate(-15deg);
+}
+
+.logo-icon-right {
+  transform: rotate(15deg);
+}
+
+.logo-text-container {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logo-text-hack {
+  color: #616161;
+  font-weight: 600;
+}
+
+.logo-text-cap {
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.logo-text-sule {
+  color: #4caf50;
+  font-weight: 700;
+}
+

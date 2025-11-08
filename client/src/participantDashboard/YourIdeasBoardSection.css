@@ -1,0 +1,257 @@
+.your-ideas-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-icon {
+  font-size: 24px;
+}
+
+.add-note-button {
+  background-color: #ff6b9d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s;
+}
+
+.add-note-button:hover {
+  background-color: #ff4081;
+}
+
+.ideas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.no-ideas-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 20px;
+  color: #757575;
+  font-size: 16px;
+}
+
+.no-ideas-message p {
+  margin: 0;
+}
+
+/* Idea Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
+  color: white;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 32px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.idea-modal {
+  max-width: 500px;
+}
+
+.idea-form {
+  padding: 24px;
+}
+
+.idea-form .form-group {
+  margin-bottom: 20px;
+}
+
+.idea-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 8px;
+}
+
+.idea-form input[type="text"],
+.idea-form select,
+.idea-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.idea-form input[type="text"]:focus,
+.idea-form select:focus,
+.idea-form textarea:focus {
+  border-color: #ff6b9d;
+  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+}
+
+.idea-form input[type="text"].error {
+  border-color: #f44336;
+}
+
+.idea-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.idea-form .error-message {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.idea-form .form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.idea-form .cancel-button,
+.idea-form .save-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.idea-form .cancel-button {
+  background: #e0e0e0;
+  color: #424242;
+}
+
+.idea-form .cancel-button:hover {
+  background: #bdbdbd;
+}
+
+.idea-form .save-button {
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
+}
+
+.idea-form .save-button:hover {
+  background: linear-gradient(135deg, #ff4081 0%, #e91e63 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 107, 157, 0.4);
+}
+
+@media (max-width: 768px) {
+  .ideas-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

@@ -1,0 +1,61 @@
+.capsule-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.capsule-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.capsule-card.unlocked {
+  background-color: #c8e6c9;
+}
+
+.capsule-content {
+  flex: 1;
+}
+
+.capsule-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0 0 8px 0;
+}
+
+.capsule-status {
+  font-size: 14px;
+  color: #424242;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-icon {
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.view-timeline-button {
+  background-color: #66bb6a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-timeline-button:hover {
+  background-color: #4caf50;
+}
+

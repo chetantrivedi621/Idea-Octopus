@@ -1,0 +1,346 @@
+/* Modal Overlay Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 0;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 32px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.team-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.team-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0;
+  flex: 1;
+}
+
+.category-badge {
+  background-color: #e0e0e0;
+  color: #424242;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.team-description {
+  font-size: 14px;
+  color: #757575;
+  margin: 0;
+}
+
+.current-score {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  background: rgba(33, 150, 243, 0.08);
+  border-radius: 10px;
+  margin-top: 12px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.score-label {
+  font-size: 13px;
+  color: #757575;
+  font-weight: 500;
+}
+
+.score-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2196f3;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(33, 150, 243, 0.15);
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.breakdown-label {
+  color: #616161;
+  font-weight: 500;
+}
+
+.breakdown-value {
+  color: #424242;
+  font-weight: 600;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.add-marks-button {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  flex: 1;
+  transition: background-color 0.2s;
+}
+
+.add-marks-button:hover {
+  background-color: #1976d2;
+}
+
+.view-ppt-button {
+  background-color: white;
+  color: #2196f3;
+  border: 2px solid #2196f3;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  flex: 1;
+  transition: all 0.2s;
+}
+
+.view-ppt-button:hover {
+  background-color: #e3f2fd;
+}
+
+.ppt-status-section {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(33, 150, 243, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.ppt-status-section.no-ppt {
+  background: rgba(158, 158, 158, 0.05);
+  border-color: rgba(158, 158, 158, 0.2);
+}
+
+.ppt-status-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ppt-icon {
+  font-size: 20px;
+}
+
+.ppt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.ppt-file-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #424242;
+}
+
+.ppt-file-size {
+  font-size: 12px;
+  color: #757575;
+}
+
+.ppt-status-text {
+  font-size: 14px;
+  color: #757575;
+  margin-left: 8px;
+}
+
+.view-ppt-button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #e0e0e0;
+  color: #757575;
+  border-color: #e0e0e0;
+}
+
+.view-ppt-button.disabled:hover {
+  background-color: #e0e0e0;
+}
+
+/* PPT Modal Styles */
+.ppt-modal {
+  max-width: 900px;
+  width: 95%;
+}
+
+.ppt-viewer {
+  padding: 24px;
+}
+
+.ppt-info {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(33, 150, 243, 0.05);
+  border-radius: 8px;
+}
+
+.ppt-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #424242;
+}
+
+.ppt-info strong {
+  color: #2196f3;
+}
+
+.ppt-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ppt-iframe {
+  width: 100%;
+  height: 600px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.ppt-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.download-ppt-button {
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  display: inline-block;
+}
+
+.download-ppt-button:hover {
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+@media (max-width: 768px) {
+  .ppt-iframe {
+    height: 400px;
+  }
+}
+

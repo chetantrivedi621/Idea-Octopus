@@ -1,0 +1,66 @@
+.judge-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  transition: background-color 0.2s;
+}
+
+.judge-card:hover {
+  background-color: #eeeeee;
+}
+
+.judge-info {
+  flex: 1;
+}
+
+.judge-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 4px;
+}
+
+.judge-email {
+  font-size: 14px;
+  color: #757575;
+}
+
+.judge-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.judge-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.judge-status.active {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.judge-status.pending {
+  background-color: #fff9c4;
+  color: #f57f17;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  transition: transform 0.2s;
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
+}
+

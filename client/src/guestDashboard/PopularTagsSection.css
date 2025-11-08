@@ -1,0 +1,110 @@
+.popular-tags-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #5227FF 0%, #B19EEF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.section-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 2px 4px rgba(82, 39, 255, 0.2));
+  animation: float 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tag-button {
+  background: linear-gradient(135deg, #e1bee7 0%, #ce93d8 100%);
+  color: #6a1b9a;
+  border: 2px solid transparent;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 12px rgba(156, 39, 176, 0.2),
+    0 2px 6px rgba(156, 39, 176, 0.1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tag-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.tag-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 2px;
+  background: linear-gradient(135deg, #5227FF, #B19EEF);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.tag-button:hover::before {
+  left: 100%;
+}
+
+.tag-button:hover::after {
+  opacity: 1;
+}
+
+.tag-button:hover {
+  background: linear-gradient(135deg, #ce93d8 0%, #ba68c8 100%);
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 
+    0 8px 24px rgba(156, 39, 176, 0.35),
+    0 4px 12px rgba(82, 39, 255, 0.2);
+  border-color: rgba(82, 39, 255, 0.3);
+}
+
+.tag-button:active {
+  transform: translateY(-3px) scale(1.05);
+  transition: all 0.1s ease;
+}
+

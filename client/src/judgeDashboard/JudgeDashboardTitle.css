@@ -1,0 +1,24 @@
+.judge-dashboard-title {
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #424242;
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 36px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #757575;
+  margin: 0;
+}
+

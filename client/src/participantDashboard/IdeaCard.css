@@ -1,0 +1,94 @@
+.idea-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.idea-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.idea-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.idea-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #424242;
+  margin: 0;
+  flex: 1;
+}
+
+.idea-category {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.idea-engagement {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.engagement-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.engagement-icon {
+  font-size: 16px;
+}
+
+.engagement-count {
+  font-size: 14px;
+  color: #424242;
+  font-weight: 500;
+}
+
+.idea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.vote-count {
+  font-size: 14px;
+  color: #424242;
+  font-weight: 500;
+}
+
+.vote-button {
+  background-color: #8bc34a;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.vote-button:hover {
+  background-color: #7cb342;
+}
+

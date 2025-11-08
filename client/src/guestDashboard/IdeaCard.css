@@ -1,0 +1,167 @@
+.idea-card {
+  flex: 1 1 280px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease, background 0.35s ease, color 0.35s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.idea-card:hover {
+  transform: translateY(-10px) rotateX(4deg);
+  background: linear-gradient(120deg, #ff6a88, #ff99ac);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+}
+
+.idea-card:hover .card-header h3 {
+  color: #fff;
+}
+
+.idea-card:hover .tag {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.05);
+}
+
+.idea-card:hover .votes {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+}
+
+.idea-card.featured {
+  background: #fff;
+  color: #333;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+.idea-card.featured:hover {
+  transform: translateY(-10px) rotateX(4deg);
+  background: linear-gradient(120deg, #ff6a88, #ff99ac);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+}
+
+.idea-card.featured:hover .card-header h3 {
+  color: #fff;
+}
+
+.idea-card.featured:hover .tag {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.idea-card.featured:hover .votes {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.idea-card.featured:hover .card-desc {
+  color: #fff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #333;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.idea-card.featured .card-header h3 {
+  color: #333;
+}
+
+.tag {
+  padding: 0.3rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.tag.green {
+  background: linear-gradient(90deg, #46c07a, #68e89e);
+  box-shadow: 0 0 8px rgba(70, 192, 122, 0.4);
+}
+
+.tag.pink {
+  background: linear-gradient(90deg, #ff5e99, #ff8dc4);
+  box-shadow: 0 0 8px rgba(255, 94, 153, 0.5);
+}
+
+
+.card-desc {
+  font-size: 0.95rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+  opacity: 0.9;
+  color: #666;
+}
+
+.idea-card.featured .card-desc {
+  color: #666;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.votes {
+  display: inline-block;
+  font-size: 0.95rem;
+  background: rgba(255, 182, 193, 0.25);
+  padding: 0.4rem 0.9rem;
+  border-radius: 10px;
+  color: #ff3e7f;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+}
+
+.idea-card.featured .votes {
+  background: rgba(255, 182, 193, 0.25);
+  color: #ff3e7f;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+

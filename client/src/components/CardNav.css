@@ -1,0 +1,360 @@
+.card-nav-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1200px;
+  margin: 2em auto 0;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.card-nav {
+  display: block;
+  height: 60px;
+  padding: 0;
+  background-color: white;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: visible;
+  will-change: height;
+  transition: height 0.4s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-nav.open {
+  height: 220px;
+}
+
+.card-nav.profile-open {
+  height: auto;
+  min-height: 60px;
+}
+
+.card-nav-top {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 2;
+}
+
+.hamburger-menu {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 6px;
+}
+
+.hamburger-menu:hover .hamburger-line {
+  opacity: 0.75;
+}
+
+.hamburger-line {
+  width: 30px;
+  height: 2px;
+  background-color: currentColor;
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease,
+    margin 0.3s ease;
+  transform-origin: 50% 50%;
+}
+
+.hamburger-menu.open .hamburger-line:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.hamburger-menu.open .hamburger-line:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.logo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 28px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.profile-dropdown-wrapper {
+  position: relative;
+  margin-left: auto;
+}
+
+.card-nav-cta-button {
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: calc(0.75rem - 0.35rem);
+  padding: 0 1rem;
+  height: 100%;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+}
+
+.card-nav-cta-button:hover {
+  background-color: #333;
+}
+
+.profile-arrow {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.profile-arrow.open {
+  transform: rotate(180deg);
+}
+
+.profile-dropdown-content {
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  padding: 0;
+  display: block;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  width: auto;
+  max-width: min(calc(100% - 2rem), 280px);
+  min-width: 0;
+  box-sizing: border-box;
+  left: auto;
+}
+
+.profile-dropdown-content.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.profile-dropdown-card {
+  background: linear-gradient(135deg, #0b0716, #1b102a);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: white;
+  min-width: 180px;
+  max-width: 100%;
+  width: auto;
+  position: relative;
+  user-select: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-dropdown-content.show .profile-dropdown-card {
+  animation: dropdownSlide 0.25s ease forwards;
+}
+
+.profile-dropdown-label {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.profile-dropdown-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.profile-dropdown-link {
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  padding: 2px 0;
+  border: none;
+  background: none;
+  text-align: left;
+  font-weight: 400;
+}
+
+.profile-dropdown-link:hover {
+  opacity: 0.75;
+}
+
+.profile-dropdown-link.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+.profile-dropdown-link-icon {
+  font-size: 14px;
+}
+
+.card-nav-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1002;
+}
+
+.card-nav.open:not(.profile-open) .card-nav-content {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+}
+
+.nav-card {
+  background: linear-gradient(135deg, #0b0716, #1b102a);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 30%;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  user-select: none;
+  flex: 1 1 0;
+}
+
+.card-nav.open .nav-card {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+.nav-card-label {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.nav-card-links {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-card-link {
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  padding: 2px 0;
+}
+
+.nav-card-link:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .card-nav-container {
+    width: 90%;
+    margin: 1.2em auto 0;
+  }
+
+  .card-nav-top {
+    padding: 0 1rem;
+  }
+
+  .hamburger-menu {
+    order: 2;
+  }
+
+  .logo-container {
+    position: static;
+    transform: none;
+    order: 1;
+  }
+
+  .profile-dropdown-content {
+    top: 60px;
+    right: 1rem;
+    max-width: calc(100% - 2rem);
+  }
+
+  .card-nav-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 1rem;
+    justify-content: flex-start;
+  }
+
+  .nav-card {
+    height: auto;
+    min-height: 60px;
+    flex: 1 1 auto;
+    max-height: none;
+    min-width: 100%;
+  }
+
+  .nav-card-label {
+    font-size: 18px;
+  }
+
+  .nav-card-link {
+    font-size: 15px;
+  }
+}
+

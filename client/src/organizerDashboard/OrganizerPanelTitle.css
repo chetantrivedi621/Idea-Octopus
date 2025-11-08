@@ -1,0 +1,34 @@
+.organizer-panel-title {
+  margin-bottom: 10px;
+}
+
+.panel-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #424242;
+  margin: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  font-size: 32px;
+}
+
+.panel-subtitle {
+  font-size: 18px;
+  color: #757575;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .panel-title {
+    font-size: 28px;
+  }
+  
+  .panel-subtitle {
+    font-size: 16px;
+  }
+}
+

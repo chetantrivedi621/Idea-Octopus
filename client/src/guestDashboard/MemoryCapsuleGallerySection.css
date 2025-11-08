@@ -1,0 +1,50 @@
+.memory-capsule-gallery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0;
+}
+
+.section-title {
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #5227FF 0%, #B19EEF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.section-icon {
+  font-size: 36px;
+  filter: drop-shadow(0 2px 4px rgba(82, 39, 255, 0.2));
+  animation: float 3s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.capsules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .capsules-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
