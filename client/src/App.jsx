@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
+
 import "./index.css";
 
 // ✅ Common Components
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="/login/visitor" element={<VisitorLogin />} />
           <Route path="/login/judge" element={<JudgeLogin />} />
           <Route path="/login/team" element={<TeamLogin />} />
+          
 
           {/* ✅ 404 Page */}
           <Route

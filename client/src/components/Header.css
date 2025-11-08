@@ -24,20 +24,46 @@
   
   text-decoration: none;
 }
-.logo-img{
-    height: 200px;
-    width: 500px;
+.logo-img {
+    height: 60px;
+    width: auto;
     background: transparent;
+    object-fit: contain;
 }
-.btn-2{
-    color: #000000;
-    background-color: lightgoldenrodyellow;
-}
-.btn-1{
-    color: whitesmoke;
-    background-color: #000000;
+.btn-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-1 {
+    color: white;
+    background-color: #4F46E5;
+}
+
+.btn-1:hover {
+    background-color: #4338CA;
+    transform: translateY(-1px);
+}
+
+.btn-2 {
+    color: #1F2937;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+}
+
+.btn-2:hover {
+    background-color: #E5E7EB;
+    transform: translateY(-1px);
+}
 
 
 @media (min-width: 640px) {
@@ -55,4 +81,31 @@
   .cta-button:hover {
     background-color: #4338ca; /* Indigo-700 */
   }
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #8f5bff, #ff8ad4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.logo-img {
+  width: 50px;        /* adjust as needed */
+  height: 50px;       /* keeps it perfectly square */
+  border-radius: 50%; /* makes it fully circular */
+  object-fit: cover;  /* keeps the image clean */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* optional soft glow */
 }

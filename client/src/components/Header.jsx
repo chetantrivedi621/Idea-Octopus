@@ -7,15 +7,15 @@ export default function Header() {
       <div className="header-container">
         
         <div className="logo-container">
-          {/* Logo / Title */}
-        <Link to="/" className="logo">
-          <img className="logo-img" src="./public/Logo.png" alt="Logo" />
-        </Link>
+          <Link to="/" className="logo">
+            <img className="logo-img" src="/images/logo.png" alt="HackCapsule" />
+            <span className="logo-text">HackCapsule</span>
+          </Link>
         </div>
       
         <div className="btn-container">
-          <button className="btn-1">SignUp</button>
-        <button className="btn-2">Try Now</button>
+          <Link to="/signup" className="btn btn-1">Sign Up</Link>
+          <Link to="/login" className="btn btn-2">Try Now</Link>
         </div>
 
       </div>

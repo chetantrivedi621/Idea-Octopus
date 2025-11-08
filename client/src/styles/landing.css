@@ -1,0 +1,461 @@
+/* ---------------------------------------------------------
+   GLOBAL WRAPPER
+--------------------------------------------------------- */
+.lp-wrapper {
+  background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 50%, #f8faff 100%);
+  font-family: 'Inter', sans-serif;
+  color: #2d2d2d;
+  overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------
+   SCROLL REVEAL ANIMATION
+--------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: revealUp 0.9s ease forwards;
+}
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------
+   FLOATING ANIMATIONS
+--------------------------------------------------------- */
+.floating {
+  animation: float 4s ease-in-out infinite;
+}
+
+.floating.delay-1 {
+  animation-delay: 0.8s;
+}
+
+.floating.delay-2 {
+  animation-delay: 1.2s;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Soft Glow Floating Effect */
+.float-glow {
+  animation: glowFloat 5s ease-in-out infinite;
+}
+
+@keyframes glowFloat {
+  0% {
+    transform: translateY(0);
+    filter: drop-shadow(0px 5px 18px rgba(148,112,255,0.4));
+  }
+  50% {
+    transform: translateY(-14px);
+    filter: drop-shadow(0px 8px 25px rgba(148,112,255,0.6));
+  }
+  100% {
+    transform: translateY(0);
+    filter: drop-shadow(0px 5px 18px rgba(148,112,255,0.4));
+  }
+}
+
+/* ---------------------------------------------------------
+   HERO SECTION
+--------------------------------------------------------- */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 120px 10%;
+  gap: 80px;
+}
+
+.hero-left {
+  max-width: 520px;
+}
+
+.hero-title {
+  font-size: 58px;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #222;
+}
+
+.hero-title span {
+  background: linear-gradient(90deg, #8856ff, #ff8ad4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: #555;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn-primary {
+  padding: 14px 28px;
+  background: linear-gradient(90deg, #8f5bff, #bc74ff);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 6px 18px rgba(140, 90, 255, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(140, 90, 255, 0.35);
+}
+
+.btn-link {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #7a42ff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-link:hover {
+  color: #9f5eff;
+}
+
+/* ---------------------------------------------------------
+   HERO RIGHT
+--------------------------------------------------------- */
+.hero-right {
+  position: relative;
+  width: 420px;
+  text-align: center;
+}
+
+.hero-bubble {
+  position: absolute;
+  padding: 12px 20px;
+  background: #fff;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+}
+
+.bubble-1 {
+  top: 0;
+  left: -40px;
+}
+
+.bubble-2 {
+  bottom: 40px;
+  right: -30px;
+}
+
+.bubble-3 {
+  bottom: -20px;
+  left: 30%;
+}
+
+.hero-visual {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  border-radius: 22px;
+  margin: 0 auto;
+  filter: drop-shadow(0px 6px 20px rgba(120, 90, 255, 0.35));
+}
+
+.project-name {
+  margin-top: 15px;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.pastel-gradient {
+  background: linear-gradient(90deg, #8f5bff, #ff8ad4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ---------------------------------------------------------
+   PARALLAX
+--------------------------------------------------------- */
+.parallax {
+  perspective: 1200px;
+}
+
+.parallax-item {
+  transition: transform 0.3s ease-out;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------
+   FEATURES
+--------------------------------------------------------- */
+.features-section {
+  padding: 120px 10%;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 38px;
+  font-weight: 800;
+}
+
+.section-title span {
+  background: linear-gradient(90deg, #7d4bff, #ff8ad4);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.section-sub {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #666;
+}
+
+.features-grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.feature-card {
+  padding: 40px 25px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(110, 77, 255, 0.2);
+}
+
+.icon-uniform {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
+/* ---------------------------------------------------------
+   SHOWCASE
+--------------------------------------------------------- */
+.showcase {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 10%;
+  gap: 60px;
+}
+
+.showcase-right {
+  flex-direction: row-reverse;
+}
+
+.uniform-img {
+  width: 430px;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 22px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.show-text h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.show-text p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.btn-secondary {
+  padding: 12px 26px;
+  background: #fff;
+  border: 2px solid #8f5bff;
+  color: #7b42ff;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #8f5bff;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------
+   TESTIMONIALS
+--------------------------------------------------------- */
+.testimonials-section {
+  padding: 120px 10%;
+  text-align: center;
+}
+
+.testimonials-grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  text-align: left;
+
+  /* ✅ FIX — prevent hover moving */
+  transform: none !important;
+}
+
+.testimonial-card:hover {
+  /* ✅ No hover effects */
+  transform: none !important;
+}
+
+.review {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-img-uniform {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #E5E7EB;
+}
+
+/* ---------------------------------------------------------
+   CTA SECTION
+--------------------------------------------------------- */
+.cta-section {
+  padding: 140px 10%;
+  text-align: center;
+  background: linear-gradient(135deg, #7f5bff 0%, #af6bfd 100%);
+  color: #fff;
+  border-radius: 30px;
+  margin: 120px 8%;
+}
+
+.cta-section h2 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 18px;
+}
+
+.btn-dark {
+  padding: 14px 32px;
+  background: #fff;
+  color: #6a3bff;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.btn-dark:hover {
+  transform: translateY(-4px);
+  background: #f0eaff;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+.footer {
+  padding: 100px 10%;
+  background: #ffffff;
+  margin-top: 80px;
+}
+
+.footer-cols {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.footer h3 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.footer-cols a {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  color: #666;
+  cursor: pointer;
+}
+
+.footer a:hover {
+  color: #8f5bff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 40px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-right {
+    margin-top: 40px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .showcase {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-cols {
+    flex-direction: column;
+    text-align: center;
+  }
+}
