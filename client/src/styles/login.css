@@ -1,0 +1,129 @@
+/* --------------------------- */
+/* ✅ Background Wrapper       */
+/* --------------------------- */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #eaf3ff, #f7e9ff, #e2fff4);
+  animation: fadeIn 0.7s ease;
+}
+
+/* --------------------------- */
+/* ✅ Glassmorphic Card        */
+/* --------------------------- */
+.login-card {
+  width: 430px;
+  padding: 40px 35px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  animation: slideUp 0.7s ease;
+}
+
+/* --------------------------- */
+/* ✅ Page Heading             */
+/* --------------------------- */
+.login-title {
+  font-size: 34px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #6a4cff, #c084fc);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+}
+
+.login-sub {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+
+/* --------------------------- */
+/* ✅ Inputs                   */
+/* --------------------------- */
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  margin: 10px 0;
+  border-radius: 14px;
+  border: 1px solid rgba(180, 180, 180, 0.4);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.login-input:focus {
+  border-color: #9f7bff;
+  box-shadow: 0 0 8px rgba(155, 90, 255, 0.4);
+}
+
+/* --------------------------- */
+/* ✅ Primary Button           */
+/* --------------------------- */
+.login-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  background: linear-gradient(90deg, #8b5dff, #c27bff);
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 8px 25px rgba(148, 89, 255, 0.25);
+}
+
+.login-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(148, 89, 255, 0.35);
+}
+
+/* --------------------------- */
+/* ✅ Back Link                */
+/* --------------------------- */
+.back-link {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.back-link span {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  color: #7a5bff;
+  transition: 0.25s;
+}
+
+.back-link span:hover {
+  opacity: 1;
+  text-shadow: 0 0 10px rgba(138, 75, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+/* --------------------------- */
+/* ✅ Animations               */
+/* --------------------------- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

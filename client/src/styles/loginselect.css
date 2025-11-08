@@ -1,0 +1,183 @@
+/* ============================================================
+   ✅ LOGIN SELECT PAGE – PREMIUM PASTEL + 3D PARALLAX
+   ============================================================ */
+
+/* ---------- BACKGROUND ---------- */
+.role-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8e4ff, #e6f3ff, #fde9d6);
+  background-size: 300% 300%;
+  animation: bgShift 10s infinite alternate ease;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------- TITLE ---------- */
+.role-header h1 {
+  font-size: 44px;
+  font-weight: 900;
+  background: linear-gradient(90deg, #7a5bff, #c07bff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.role-header p {
+  margin-top: 10px;
+  color: #666;
+  font-size: 18px;
+}
+
+/* ============================================================
+   ✅ 4 CARD GRID (Single Row on Desktop)
+   ============================================================ */
+.role-grid {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* ✅ 4 CARDS IN ONE ROW */
+  gap: 35px;
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+
+  perspective: 1200px;   /* ✅ Enables 3D depth */
+}
+
+/* ============================================================
+   ✅ CARD STYLING + 3D PARALLAX HOVER
+   ============================================================ */
+.role-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  border-radius: 26px;
+  padding: 30px 25px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: pointer;
+
+  transform-style: preserve-3d;  /* ✅ Allows nested 3D */
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+
+  /* fade-in animation */
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.9s forwards;
+}
+
+.role-card:nth-child(2) { animation-delay: 0.15s; }
+.role-card:nth-child(3) { animation-delay: 0.3s; }
+.role-card:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes fadeUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ✅ 3D HOVER EFFECT */
+.role-card:hover {
+  transform:
+    rotateX(12deg)
+    rotateY(-12deg)
+    translateY(-14px)
+    scale(1.06);
+  box-shadow: 0 30px 50px rgba(130, 78, 250, 0.35);
+}
+
+/* ✅ Glow Shine Layer */
+.role-card:hover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.35),
+    rgba(140,65,255,0.35),
+    rgba(255,255,255,0.25)
+  );
+  mix-blend-mode: soft-light;
+  filter: blur(10px);
+  animation: glowAnim 1.8s ease infinite alternate;
+}
+
+@keyframes glowAnim {
+  from { opacity: 0.25; }
+  to { opacity: 0.7; }
+}
+
+/* ============================================================
+   ✅ ICON AREA
+   ============================================================ */
+.icon-wrap {
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 18px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  transform-style: preserve-3d;
+  transition: 0.35s ease;
+}
+
+/* ✅ Icon jumps forward in 3D */
+.role-card:hover .icon-wrap {
+  transform: translateZ(40px) scale(1.12);
+}
+
+.icon-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============================================================
+   ✅ TEXT STYLING
+   ============================================================ */
+.role-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #5b3fe6;
+  margin-top: 10px;
+}
+
+.role-card p {
+  margin-top: 8px;
+  color: #555;
+  font-size: 15px;
+}
+
+/* ============================================================
+   ✅ RESPONSIVE GRID
+   ============================================================ */
+
+/* ✅ Tablet → 2 per row */
+@media (max-width: 1100px) {
+  .role-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ✅ Mobile → 1 per row */
+@media (max-width: 600px) {
+  .role-grid {
+    grid-template-columns: repeat(1, 1fr);
+    width: 90%;
+  }
+}
