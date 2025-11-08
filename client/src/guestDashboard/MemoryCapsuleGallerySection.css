@@ -42,6 +42,15 @@
   gap: 24px;
 }
 
+.capsule-card-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.capsule-card-clickable:hover {
+  transform: scale(1.02);
+}
+
 @media (max-width: 768px) {
   .capsules-grid {
     grid-template-columns: 1fr;
