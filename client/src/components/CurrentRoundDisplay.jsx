@@ -53,7 +53,6 @@ function CurrentRoundDisplay({ currentRound, isReadOnly = true }) {
   if (!currentRound) {
     return (
       <div className="current-round-display no-round">
-        <div className="round-icon">⏸️</div>
         <div className="round-info">
           <span className="round-label">Current Round</span>
           <span className="round-name">No round active</span>
@@ -75,30 +74,24 @@ function CurrentRoundDisplay({ currentRound, isReadOnly = true }) {
     }
   }
 
-  const getStatusIcon = () => {
-    switch (currentRound.status) {
-      case 'active':
-        return '▶️'
-      case 'completed':
-        return '✅'
-      case 'upcoming':
-        return '⏳'
-      default:
-        return '⏸️'
-    }
-  }
-
   const formatDateTime = (time) => {
     if (!time) return null
     const date = typeof time === 'number' ? new Date(time) : new Date(time)
     return date.toLocaleString()
   }
 
+  const isActive = currentRound.status === 'active'
+  
   return (
     <div className="current-round-display" style={{ '--status-color': getStatusColor() }}>
-      <div className="round-icon">{getStatusIcon()}</div>
+      <div className={`round-status-dot ${isActive ? 'active' : 'inactive'}`} style={{ backgroundColor: getStatusColor() }}></div>
       <div className="round-info">
-        <span className="round-label">Current Round</span>
+        <div className="round-status-header">
+          <span className="round-label">Current Round</span>
+          <span className={`round-status-text ${isActive ? 'active' : 'inactive'}`}>
+            {isActive ? 'Round Active' : 'No round active'}
+          </span>
+        </div>
         <span className="round-name">{currentRound.name}</span>
         <div className="round-times">
           {currentRound.startTime && (
@@ -111,9 +104,9 @@ function CurrentRoundDisplay({ currentRound, isReadOnly = true }) {
               <strong>End:</strong> {formatDateTime(currentRound.endTime)}
             </span>
           )}
-          {timeRemaining && (
+          {timeRemaining && isActive && (
             <span className="round-time-remaining">
-              {timeRemaining}
+              Submissions close in: {timeRemaining}
             </span>
           )}
         </div>

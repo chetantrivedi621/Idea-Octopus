@@ -20,8 +20,8 @@ export default function HackathonSection() {
           </ul>
 
           <div className="mt-4">
-            <Link to="/upload" className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md">Host your event</Link>
-            <Link to="/add" className="ml-3 inline-flex items-center px-4 py-2 border rounded-md">Start posting</Link>
+            <Link to="/dashboard" className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md">Go to Dashboard</Link>
+            <Link to="/ideas" className="ml-3 inline-flex items-center px-4 py-2 border rounded-md">View Ideas</Link>
           </div>
         </div>
 

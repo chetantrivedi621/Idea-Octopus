@@ -4,7 +4,6 @@ import logo from '../assets/react.svg'
 import JudgeDashboardTitle from './JudgeDashboardTitle'
 import TeamsPanelSection from './TeamsPanelSection'
 import LeaderboardSection from './LeaderboardSection'
-import AISummarySection from './AISummarySection'
 import CurrentRoundDisplay from '../components/CurrentRoundDisplay'
 import './JudgeDashboard.css'
 
@@ -12,7 +11,6 @@ function JudgeDashboard({ onRoleChange, teamScores, onSaveMarks, getTotalScore, 
   const dashboardRef = useRef(null)
   const teamsRef = useRef(null)
   const leaderboardRef = useRef(null)
-  const profileRef = useRef(null)
   const contentRef = useRef(null)
   const [navHeight, setNavHeight] = useState(60)
 
@@ -47,8 +45,7 @@ function JudgeDashboard({ onRoleChange, teamScores, onSaveMarks, getTotalScore, 
       bgColor: "#170D27",
       textColor: "#fff",
       links: [
-        { label: "Leaderboard", ariaLabel: "View leaderboard", onClick: () => scrollToSection(leaderboardRef) },
-        { label: "AI Summary", ariaLabel: "View AI summary", onClick: () => scrollToSection(profileRef) }
+        { label: "Leaderboard", ariaLabel: "View leaderboard", onClick: () => scrollToSection(leaderboardRef) }
       ]
     }
   ]
@@ -96,9 +93,6 @@ function JudgeDashboard({ onRoleChange, teamScores, onSaveMarks, getTotalScore, 
               getTotalScore={getTotalScore}
             />
           </div>
-          <div ref={profileRef}>
-            <AISummarySection />
-          </div>
         </main>
       </div>
     </div>
@@ -106,4 +100,3 @@ function JudgeDashboard({ onRoleChange, teamScores, onSaveMarks, getTotalScore, 
 }
 
 export default JudgeDashboard
-

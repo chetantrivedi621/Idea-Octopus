@@ -1,39 +1,77 @@
-import CapsuleCard from './CapsuleCard'
+import { useState } from 'react'
+import CapsuleCard from '../guestDashboard/CapsuleCard'
+import SpotlightCard from '../components/SpotlightCard'
+import CapsuleDetailsModal from '../components/CapsuleDetailsModal'
 import './MemoryCapsulesSection.css'
 
-function MemoryCapsulesSection() {
-  const capsules = [
-    {
-      id: 1,
-      title: 'Midnight Snack Finder',
-      isUnlocked: true,
-      votes: 12
-    },
-    {
-      id: 2,
-      title: 'Smart Campus Navigator',
-      isUnlocked: false,
-      votesNeeded: 3
+function MemoryCapsulesSection({ participantEvents = [] }) {
+  const [selectedEvent, setSelectedEvent] = useState(null)
+
+  // Format event for display
+  const formatEventForDisplay = (event) => {
+    if (!event) return null
+    
+    const formatDate = (dateString) => {
+      if (!dateString) return 'Date TBD'
+      const date = new Date(dateString)
+      return date.toLocaleDateString('en-US', {
+        month: 'short',
+        year: 'numeric'
+      })
     }
-  ]
+
+    return {
+      id: event._id || event.id,
+      name: event.name || 'Untitled Event',
+      ideasPreserved: 0, // This could be calculated from ideas count
+      date: formatDate(event.startDate),
+      winners: event.winners || [],
+      tags: event.tags || [],
+      memories: event.memories || [],
+      gallery: event.gallery || []
+    }
+  }
+
+  const formattedEvents = participantEvents
+    .map(event => formatEventForDisplay(event))
+    .filter(event => event !== null)
 
   return (
     <section className="memory-capsules-section">
       <h2 className="section-title">
-        <span className="section-icon">💊</span>
-        Memory Capsules
+        <span className="section-icon">📦</span>
+        Memory Capsule Gallery
       </h2>
-      <div className="capsules-grid">
-        {capsules.map((capsule) => (
-          <CapsuleCard
-            key={capsule.id}
-            title={capsule.title}
-            isUnlocked={capsule.isUnlocked}
-            votes={capsule.votes}
-            votesNeeded={capsule.votesNeeded}
-          />
-        ))}
-      </div>
+      {formattedEvents.length > 0 ? (
+        <div className="capsules-grid">
+          {formattedEvents.map((event) => (
+            <div
+              key={event.id}
+              onClick={() => setSelectedEvent(event)}
+              className="capsule-card-clickable"
+            >
+              <SpotlightCard spotlightColor="rgba(82, 39, 255, 0.15)">
+                <CapsuleCard
+                  title={event.name}
+                  ideasCount={event.ideasPreserved}
+                  date={event.date}
+                />
+              </SpotlightCard>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#666' }}>
+          <p>No memory capsules available yet. Memory capsules will appear here after events you participated in are completed and organizers add winners or photos.</p>
+        </div>
+      )}
+
+      {selectedEvent && (
+        <CapsuleDetailsModal 
+          event={selectedEvent} 
+          onClose={() => setSelectedEvent(null)} 
+        />
+      )}
     </section>
   )
 }

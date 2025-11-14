@@ -1,8 +1,10 @@
 .events-section {
   padding: 5rem 8%;
-  background: linear-gradient(to bottom right, #ffffff, #f5f4ff);
+  background: transparent !important;
   text-align: left;
   position: relative;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .events-title {

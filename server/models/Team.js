@@ -6,6 +6,11 @@ const teamSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  teamId: {
+    type: String,
+    unique: true,
+    sparse: true // Allows null values but enforces uniqueness when present
+  },
   description: {
     type: String,
     default: ''
@@ -15,7 +20,17 @@ const teamSchema = new mongoose.Schema({
     default: 'General'
   },
   members: [{
-    type: String
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    name: String,
+    email: String,
+    role: {
+      type: String,
+      enum: ['leader', 'member'],
+      default: 'member'
+    }
   }],
   createdAt: {
     type: Date,

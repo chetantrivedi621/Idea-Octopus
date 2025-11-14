@@ -5,17 +5,34 @@
 }
 
 .section-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #424242;
-  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7f5eff, #b97fff, #ff85b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  letter-spacing: -1px;
+  animation: gradientMove 6s ease infinite;
+  margin: 0 0 2rem 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
 }
 
 .section-icon {
-  font-size: 24px;
+  font-size: 2.5rem;
 }
 
 .capsules-grid {

@@ -1,7 +1,7 @@
 import TeamCard from './TeamCard'
 import './TeamsPanelSection.css'
 
-function TeamsPanelSection({ teamScores, onSaveMarks, getTotalScore, teamPPTs }) {
+function TeamsPanelSection({ teamScores = {}, onSaveMarks, getTotalScore, teamPPTs = {} }) {
   const teams = [
     {
       id: 1,
@@ -38,7 +38,6 @@ function TeamsPanelSection({ teamScores, onSaveMarks, getTotalScore, teamPPTs })
   return (
     <section className="teams-panel-section">
       <h2 className="section-title">
-        <span className="section-icon">👥</span>
         Teams Panel
       </h2>
       <div className="teams-grid">
@@ -46,10 +45,10 @@ function TeamsPanelSection({ teamScores, onSaveMarks, getTotalScore, teamPPTs })
           <TeamCard
             key={team.id}
             team={team}
-            currentScores={teamScores[team.id]}
-            onSaveMarks={onSaveMarks}
-            getTotalScore={getTotalScore}
-            teamPPT={teamPPTs[team.id]}
+            currentScores={teamScores?.[team.id] || null}
+            onSaveMarks={onSaveMarks || (() => {})}
+            getTotalScore={getTotalScore || (() => 0)}
+            teamPPT={teamPPTs?.[team.id] || null}
           />
         ))}
       </div>

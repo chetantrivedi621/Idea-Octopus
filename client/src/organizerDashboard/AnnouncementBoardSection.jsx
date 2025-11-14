@@ -5,7 +5,7 @@ function AnnouncementBoardSection() {
   const announcements = [
     {
       id: 1,
-      message: 'Welcome to HackCapsule 2024! 👋',
+      message: 'Welcome to HackCapsule 2024!',
       timeAgo: '2 hours ago'
     },
     {

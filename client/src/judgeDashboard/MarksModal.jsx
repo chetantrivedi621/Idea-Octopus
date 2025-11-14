@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import './MarksModal.css'
 
 const CRITERIA = [
-  { id: 'innovation', label: 'Innovation & Creativity', max: 10, icon: '💡' },
-  { id: 'technical', label: 'Technical Implementation', max: 10, icon: '⚙️' },
-  { id: 'presentation', label: 'Presentation & Demo', max: 5, icon: '🎤' },
-  { id: 'problemSolving', label: 'Problem Solving', max: 5, icon: '🧩' }
+  { id: 'innovation', label: 'Innovation & Creativity', max: 10, icon: '' },
+  { id: 'technical', label: 'Technical Implementation', max: 10, icon: '' },
+  { id: 'presentation', label: 'Presentation & Demo', max: 5, icon: '' },
+  { id: 'problemSolving', label: 'Problem Solving', max: 5, icon: '' }
 ]
 
 function MarksModal({ team, isOpen, onClose, onSave, currentScores }) {
@@ -97,7 +97,6 @@ function MarksModal({ team, isOpen, onClose, onSave, currentScores }) {
             {CRITERIA.map((criterion) => (
               <div key={criterion.id} className="criterion-group">
                 <label htmlFor={criterion.id} className="criterion-label">
-                  <span className="criterion-icon">{criterion.icon}</span>
                   <span className="criterion-text">
                     {criterion.label}
                     <span className="criterion-max">(out of {criterion.max})</span>

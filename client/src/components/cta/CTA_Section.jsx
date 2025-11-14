@@ -12,8 +12,8 @@ export default function JoinCTA() {
         </div>
 
         <div className="flex gap-3">
-          <Link to="/add" className="px-4 py-2 bg-white text-indigo-700 rounded-full font-medium">Post an idea</Link>
-          <Link to="/upload" className="px-4 py-2 border border-white/30 rounded-full">Host an event</Link>
+          <Link to="/ideas" className="px-4 py-2 bg-white text-indigo-700 rounded-full font-medium">View Ideas</Link>
+          <Link to="/dashboard" className="px-4 py-2 border border-white/30 rounded-full">Go to Dashboard</Link>
         </div>
       </div>
     </section>

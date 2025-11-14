@@ -13,6 +13,7 @@
   animation: fadeUp 0.8s ease forwards;
   display: flex;
   flex-direction: column;
+  border: none;
 }
 
 @keyframes fadeUp {
@@ -28,9 +29,9 @@
 
 .idea-card:hover {
   transform: translateY(-10px) rotateX(4deg);
-  background: linear-gradient(120deg, #ff6a88, #ff99ac);
+  background: linear-gradient(120deg, #87ceeb, #b0e0e6);
   color: #fff;
-  box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+  box-shadow: 0 0 15px rgba(135, 206, 235, 0.3);
 }
 
 .idea-card:hover .card-header h3 {
@@ -42,6 +43,11 @@
   color: #fff !important;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
   transform: scale(1.05);
+}
+
+.idea-card:hover .tag.light-green {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
 }
 
 .idea-card:hover .votes {
@@ -58,9 +64,9 @@
 
 .idea-card.featured:hover {
   transform: translateY(-10px) rotateX(4deg);
-  background: linear-gradient(120deg, #ff6a88, #ff99ac);
+  background: linear-gradient(120deg, #87ceeb, #b0e0e6);
   color: #fff;
-  box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+  box-shadow: 0 0 20px rgba(135, 206, 235, 0.4);
 }
 
 .idea-card.featured:hover .card-header h3 {
@@ -71,6 +77,11 @@
   background: rgba(255, 255, 255, 0.25);
   color: #fff;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.idea-card.featured:hover .tag.light-green {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
 .idea-card.featured:hover .votes {
@@ -120,6 +131,12 @@
 .tag.pink {
   background: linear-gradient(90deg, #ff5e99, #ff8dc4);
   box-shadow: 0 0 8px rgba(255, 94, 153, 0.5);
+}
+
+.tag.light-green {
+  background: linear-gradient(90deg, #a8e6cf, #c8f4e0);
+  color: #2d8659;
+  box-shadow: 0 0 8px rgba(168, 230, 207, 0.4);
 }
 
 

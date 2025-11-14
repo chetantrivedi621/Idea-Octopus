@@ -5,7 +5,7 @@ function JudgeDashboardTitle() {
     <div className="judge-dashboard-title">
       <h1 className="title">
         <span className="title-icon">⚖️</span>
-        Judge Dashboard
+        <span>Judge Dashboard</span>
       </h1>
       <p className="subtitle">Evaluate ideas, score presentations, and view summaries.</p>
     </div>

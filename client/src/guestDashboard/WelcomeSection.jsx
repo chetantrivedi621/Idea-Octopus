@@ -5,9 +5,7 @@ function WelcomeSection() {
     <section className="hero">
       <div className="hero-content">
         <h1 className="hero-title">Welcome, Guest</h1>
-        <p className="hero-subtitle">
-          Explore hackathon ideas, reactions, and creative capsules.
-        </p>
+        <p className="hero-subtitle">Explore hackathon ideas, reactions, and creative capsules.</p>
         <button className="cta-btn">Explore Now →</button>
       </div>
       <div className="hero-loader">

@@ -1,5 +1,42 @@
 .shared-leaderboard-section {
-  margin-bottom: 30px;
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent !important;
+  backdrop-filter: none;
+  border-radius: 0;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7f5eff, #b97fff, #ff85b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  letter-spacing: -1px;
+  animation: gradientMove 6s ease infinite;
+  margin: 0 0 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.section-icon {
+  font-size: 2.5rem;
 }
 
 .leaderboard-list {
@@ -9,20 +46,40 @@
 }
 
 .leaderboard-row {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   gap: 20px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   position: relative;
+  animation: slideIn 0.5s ease;
+  animation-fill-mode: both;
+}
+
+.leaderboard-row:nth-child(1) { animation-delay: 0.1s; }
+.leaderboard-row:nth-child(2) { animation-delay: 0.2s; }
+.leaderboard-row:nth-child(3) { animation-delay: 0.3s; }
+.leaderboard-row:nth-child(4) { animation-delay: 0.4s; }
+.leaderboard-row:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .leaderboard-row.has-score {
   border-left: 4px solid #2196f3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .leaderboard-row.no-score {
@@ -31,8 +88,9 @@
 }
 
 .leaderboard-row:hover {
-  transform: translateX(4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .rank-circle {
@@ -48,6 +106,37 @@
   flex-shrink: 0;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.rank-circle.medal {
+  font-size: 24px;
+  background: radial-gradient(circle, #f9d423, #ff4e50);
+}
+
+.rank-circle.medal.gold {
+  background: radial-gradient(circle, #f9d423, #ff4e50);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  animation: medalGlow 2s infinite;
+}
+
+.rank-circle.medal.silver {
+  background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+  box-shadow: 0 4px 12px rgba(192, 192, 192, 0.4);
+}
+
+.rank-circle.medal.bronze {
+  background: linear-gradient(135deg, #cd7f32 0%, #e6a85c 100%);
+  box-shadow: 0 4px 12px rgba(205, 127, 50, 0.4);
+}
+
+@keyframes medalGlow {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.8);
+  }
 }
 
 .leaderboard-row:first-child .rank-circle {

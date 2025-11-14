@@ -1,6 +1,12 @@
 import './JudgeCard.css'
 
-function JudgeCard({ name, email, status }) {
+function JudgeCard({ id, name, email, status, onDelete }) {
+  const handleDelete = () => {
+    if (onDelete && id) {
+      onDelete(id)
+    }
+  }
+
   return (
     <div className="judge-card">
       <div className="judge-info">
@@ -9,7 +15,11 @@ function JudgeCard({ name, email, status }) {
       </div>
       <div className="judge-actions">
         <span className={`judge-status ${status.toLowerCase()}`}>{status}</span>
-        <button className="delete-button" aria-label="Delete judge">
+        <button 
+          className="delete-button" 
+          aria-label="Delete judge"
+          onClick={handleDelete}
+        >
           🗑️
         </button>
       </div>

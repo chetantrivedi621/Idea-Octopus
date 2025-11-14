@@ -5,12 +5,12 @@ function NavigationSidebar({ isOpen, onClose }) {
   const [activeItem, setActiveItem] = useState('Dashboard')
 
   const menuItems = [
-    { id: 'Dashboard', icon: '🏠', label: 'Dashboard' },
-    { id: 'Participants', icon: '👥', label: 'Participants' },
-    { id: 'All Ideas', icon: '💡', label: 'All Ideas' },
-    { id: 'Capsules', icon: '📦', label: 'Capsules' },
-    { id: 'Judges', icon: '⚖️', label: 'Judges' },
-    { id: 'Settings', icon: '⚙️', label: 'Settings' },
+    { id: 'Dashboard', icon: '', label: 'Dashboard' },
+    { id: 'Participants', icon: '', label: 'Participants' },
+    { id: 'All Ideas', icon: '', label: 'All Ideas' },
+    { id: 'Capsules', icon: '', label: 'Capsules' },
+    { id: 'Judges', icon: '', label: 'Judges' },
+    { id: 'Settings', icon: '', label: 'Settings' },
   ]
 
   if (!isOpen) return null

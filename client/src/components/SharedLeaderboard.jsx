@@ -63,10 +63,10 @@ function SharedLeaderboard({ teamScores, getTotalScore }) {
               }}
             >
               <div 
-                className="rank-circle" 
+                className={`rank-circle medal ${team.rank === 1 ? 'gold' : team.rank === 2 ? 'silver' : team.rank === 3 ? 'bronze' : ''}`}
                 style={{ backgroundColor: team.rankColor }}
               >
-                {team.rank}
+                {team.rank <= 3 ? '🏆' : team.rank}
               </div>
               <div className="team-info">
                 <div className="team-name">{team.name}</div>

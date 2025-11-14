@@ -314,16 +314,47 @@ const CardNav = ({
               <img src={logo} alt={logoAlt} className="logo" />
             )}
           </div>
-          <div className="profile-dropdown-wrapper" ref={profileDropdownRef}>
+          <div className="profile-dropdown-wrapper">
             <button
+              ref={profileDropdownRef}
               type="button"
-              className={`card-nav-cta-button profile-button ${isProfileDropdownOpen ? 'open' : ''}`}
-              style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
+              className="card-nav-cta-button"
               onClick={toggleProfileDropdown}
+              aria-label="Profile dropdown"
+              aria-expanded={isProfileDropdownOpen}
             >
-              Profile
+              <span>{currentRole}</span>
               <IoChevronDown className={`profile-arrow ${isProfileDropdownOpen ? 'open' : ''}`} />
             </button>
+            <div
+              ref={profileDropdownContentRef}
+              className={`profile-dropdown-content ${isProfileDropdownOpen ? 'show' : ''}`}
+            >
+              <div className="profile-dropdown-card">
+                <div className="profile-dropdown-label">Switch Role</div>
+                <div className="profile-dropdown-links">
+                  {dashboardOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      className={`profile-dropdown-link ${currentRole === option.value ? 'active' : ''}`}
+                      onClick={() => {
+                        if (onRoleChange && option.value !== currentRole) {
+                          onRoleChange(option.value);
+                        }
+                        setIsProfileDropdownOpen(false);
+                        setTimeout(() => {
+                          updateHeight();
+                        }, 50);
+                      }}
+                      aria-label={`Switch to ${option.label} role`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="card-nav-content" aria-hidden={!isExpanded}>
@@ -367,36 +398,6 @@ const CardNav = ({
           ))}
         </div>
       </nav>
-      {isProfileDropdownOpen && onRoleChange && (
-        <div className={`profile-dropdown-content ${isProfileDropdownOpen ? 'show' : ''}`} ref={profileDropdownContentRef}>
-          <div className="profile-dropdown-card">
-            <div className="profile-dropdown-label">Dashboard</div>
-            <div className="profile-dropdown-links">
-              {dashboardOptions.map((option) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  className={`profile-dropdown-link ${currentRole === option.value ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (onRoleChange && option.value !== currentRole) {
-                      onRoleChange(option.value);
-                    }
-                    setIsProfileDropdownOpen(false);
-                    setTimeout(() => {
-                      updateHeight();
-                    }, 50);
-                  }}
-                >
-                  <GoArrowUpRight className="profile-dropdown-link-icon" aria-hidden="true" />
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

@@ -1,68 +1,113 @@
-import React, { useState } from 'react'
-import EmojiButton from './EmojiButton'
-import Modal from './Modal'
-import { reactIdea } from '../api/api'
+import React, { useEffect, useState } from 'react'
+import { getIdeas } from '../api/api'
+import IdeaCard from '../components/IdeaCard'
+import { Link } from 'react-router-dom'
 
-/**
- * IdeaCard component
- * Props:
- *  - idea: { _id, teamName, title, description, emojiCounts, createdAt }
- *  - onReact: optional callback to refresh parent list
- */
-export default function IdeaCard({ idea, onReact }) {
-  const [counts, setCounts] = useState({
-    fire: idea.emojiCounts?.fire || 0,
-    heart: idea.emojiCounts?.heart || 0,
-    star: idea.emojiCounts?.star || 0
-  })
-  const [loading, setLoading] = useState(false)
-  const [modalOpen, setModalOpen] = useState(false)
-  const [errorMsg, setErrorMsg] = useState('')
-  const [lastClicked, setLastClicked] = useState(null)
-  const SPAM_COOLDOWN = 800
+export default function IdeaBoard() {
+  const [ideas, setIdeas] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [sortBy, setSortBy] = useState('popular')
 
-  const handleReact = async (emoji) => {
-    const now = Date.now()
-    if (lastClicked && now - lastClicked < SPAM_COOLDOWN) return
-    setLastClicked(now)
-    setCounts(prev => ({ ...prev, [emoji]: (prev[emoji] || 0) + 1 }))
-    setLoading(true)
-
-    try {
-      await reactIdea(idea._id, emoji)
-      if (onReact) onReact()
-    } catch (err) {
-      setCounts(prev => ({ ...prev, [emoji]: Math.max((prev[emoji] || 1) - 1, 0) }))
-      setErrorMsg(err?.message || 'Failed to react')
-      setModalOpen(true)
-    } finally {
-      setTimeout(() => setLoading(false), 300)
+  useEffect(() => {
+    let mounted = true
+    const loadIdeas = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const data = await getIdeas({ sort: sortBy })
+        if (mounted) setIdeas(data || [])
+      } catch (err) {
+        if (mounted) {
+          setError(err?.message || 'Failed to load ideas')
+          console.error('Failed to load ideas', err)
+        }
+      } finally {
+        if (mounted) setLoading(false)
+      }
     }
+    loadIdeas()
+    // Refresh every 10 seconds to show live updates
+    const interval = setInterval(loadIdeas, 10000)
+    return () => {
+      mounted = false
+      clearInterval(interval)
+    }
+  }, [sortBy])
+
+  const handleReact = () => {
+    // Refresh ideas after a reaction
+    const loadIdeas = async () => {
+      try {
+        const data = await getIdeas({ sort: sortBy })
+        setIdeas(data || [])
+      } catch (err) {
+        console.error('Failed to refresh ideas', err)
+      }
+    }
+    loadIdeas()
   }
 
   return (
-    <article className={`bg-yellow-100 p-4 rounded-lg shadow transition ${loading ? 'opacity-70' : ''}`}>
-      <header className="flex items-baseline justify-between">
-        <div className="text-xs text-slate-600">{idea.teamName}</div>
-        <div className="text-xs text-slate-500">{new Date(idea.createdAt).toLocaleString()}</div>
-      </header>
-
-      <h3 className="font-semibold text-lg mt-2">{idea.title}</h3>
-      <p className="text-sm mt-2 text-slate-700">{idea.description}</p>
-
-      <div className="flex gap-3 mt-4 items-center">
-        <EmojiButton emoji="🔥" count={counts.fire} onClick={() => handleReact('fire')} disabled={loading} />
-        <EmojiButton emoji="❤️" count={counts.heart} onClick={() => handleReact('heart')} disabled={loading} />
-        <EmojiButton emoji="⭐" count={counts.star} onClick={() => handleReact('star')} disabled={loading} />
-      </div>
-
-      {/* error modal */}
-      <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title="Error">
-        <p className="text-sm text-red-600">{errorMsg}</p>
-        <div className="mt-3 text-right">
-          <button onClick={() => setModalOpen(false)} className="px-3 py-1 bg-indigo-600 text-white rounded-md">OK</button>
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Idea Board</h1>
+            <p className="text-gray-600 mt-1">Share and explore innovative ideas</p>
+          </div>
+          <Link
+            to="/"
+            className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
+          >
+            Back to Home
+          </Link>
         </div>
-      </Modal>
-    </article>
+
+        <div className="mb-6 flex items-center gap-4">
+          <label className="text-sm font-medium text-gray-700">Sort by:</label>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <option value="popular">Most Popular</option>
+            <option value="new">Newest First</option>
+          </select>
+        </div>
+
+        {loading && (
+          <div className="text-center py-12">
+            <div className="text-gray-500">Loading ideas...</div>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-6">
+            {error}
+          </div>
+        )}
+
+        {!loading && !error && ideas.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">No ideas yet — be the first to post!</p>
+            <Link
+              to="/"
+              className="mt-4 inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition"
+            >
+              Go to Home
+            </Link>
+          </div>
+        )}
+
+        {!loading && !error && ideas.length > 0 && (
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {ideas.map((idea) => (
+              <IdeaCard key={idea._id} idea={idea} onReact={handleReact} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   )
 }

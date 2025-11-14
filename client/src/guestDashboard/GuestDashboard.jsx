@@ -5,8 +5,6 @@ import WelcomeSection from './WelcomeSection'
 import UpcomingEventsSection from './UpcomingEventsSection'
 import IdeaBoardPreviewSection from './IdeaBoardPreviewSection'
 import MemoryCapsuleGallerySection from './MemoryCapsuleGallerySection'
-import PopularTagsSection from './PopularTagsSection'
-import CallToActionButton from './CallToActionButton'
 import './GuestDashboard.css'
 
 function GuestDashboard({ onRoleChange, events = [], currentRole = 'Guest' }) {
@@ -14,8 +12,6 @@ function GuestDashboard({ onRoleChange, events = [], currentRole = 'Guest' }) {
   const eventsRef = useRef(null)
   const ideaBoardRef = useRef(null)
   const capsulesRef = useRef(null)
-  const profileRef = useRef(null)
-  const settingsRef = useRef(null)
   const contentRef = useRef(null)
   const [navHeight, setNavHeight] = useState(60)
 
@@ -82,15 +78,6 @@ function GuestDashboard({ onRoleChange, events = [], currentRole = 'Guest' }) {
         { label: "Idea Board", ariaLabel: "View idea board", onClick: () => scrollToSection(ideaBoardRef) },
         { label: "Capsules", ariaLabel: "View memory capsules", onClick: () => scrollToSection(capsulesRef) }
       ]
-    },
-    {
-      label: "More",
-      bgColor: "#271E37",
-      textColor: "#fff",
-      links: [
-        { label: "Tags", ariaLabel: "View popular tags", onClick: () => scrollToSection(profileRef) },
-        { label: "Settings", ariaLabel: "View settings", onClick: () => scrollToSection(settingsRef) }
-      ]
     }
   ]
 
@@ -130,12 +117,6 @@ function GuestDashboard({ onRoleChange, events = [], currentRole = 'Guest' }) {
           </div>
           <div ref={capsulesRef}>
             <MemoryCapsuleGallerySection />
-          </div>
-          <div ref={profileRef}>
-            <PopularTagsSection />
-          </div>
-          <div ref={settingsRef}>
-            <CallToActionButton />
           </div>
         </main>
       </div>

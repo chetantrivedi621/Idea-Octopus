@@ -7,28 +7,28 @@ function EventOverviewSection() {
       id: 1,
       title: 'Total Teams',
       value: '24',
-      icon: '👥',
+      icon: '',
       color: '#9c27b0'
     },
     {
       id: 2,
       title: 'Ideas Submitted',
       value: '68',
-      icon: '💡',
+      icon: '',
       color: '#8bc34a'
     },
     {
       id: 3,
       title: 'Total Votes',
       value: '342',
-      icon: '🗳️',
+      icon: '',
       color: '#ff6b9d'
     },
     {
       id: 4,
       title: 'Capsules Created',
       value: '12',
-      icon: '📦',
+      icon: '',
       color: '#ffc107'
     }
   ]

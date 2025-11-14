@@ -1,34 +1,47 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import CapsuleCard from './CapsuleCard'
-import CapsuleDetailsModal from '../components/CapsuleDetailsModal'
+import SpotlightCard from '../components/SpotlightCard'
 import './MemoryCapsuleGallerySection.css'
 
 function MemoryCapsuleGallerySection() {
-  const [selectedEvent, setSelectedEvent] = useState(null)
+  const navigate = useNavigate()
 
   const events = [
     {
       id: 'spring-hack-2024',
       name: 'Spring Hack 2024',
+      organizerClub: 'Tech Innovation Club',
       ideasPreserved: 24,
       date: 'Mar 2024',
       winners: [
-        { 
-          name: 'Aman Verma', 
-          gmail: 'aman@gmail.com', 
-          linkedin: 'https://linkedin.com/in/aman' 
+        {
+          position: 1,
+          teamName: 'Brainstormers',
+          idea: 'AI Health Monitor',
+          members: [
+            { name: 'Aman Verma', email: 'aman@gmail.com', linkedin: 'https://linkedin.com/in/aman' },
+            { name: 'Priya Sharma', email: 'priya@gmail.com', linkedin: 'https://linkedin.com/in/priya' }
+          ]
         },
-        { 
-          name: 'Simran Kaur', 
-          gmail: 'simran@gmail.com', 
-          linkedin: 'https://linkedin.com/in/simran' 
+        {
+          position: 2,
+          teamName: 'Code Wizards',
+          idea: 'Food Waste Tracker',
+          members: [
+            { name: 'Simran Kaur', email: 'simran@gmail.com', linkedin: 'https://linkedin.com/in/simran' },
+            { name: 'Rahul Singh', email: 'rahul@gmail.com', linkedin: 'https://linkedin.com/in/rahul' }
+          ]
         },
-        { 
-          name: 'Dev Rawat', 
-          gmail: 'dev@gmail.com', 
-          linkedin: 'https://linkedin.com/in/dev' 
+        {
+          position: 3,
+          teamName: 'Innovation Squad',
+          idea: 'Pet Mood Detector',
+          members: [
+            { name: 'Dev Rawat', email: 'dev@gmail.com', linkedin: 'https://linkedin.com/in/dev' }
+          ]
         }
       ],
+      tags: ['AI', 'HEALTHTECH', 'FUNNY IDEAS', 'SUSTAINABILITY', 'EDTECH', 'FINTECH'],
       memories: [
         'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop',
         'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop',
@@ -39,18 +52,25 @@ function MemoryCapsuleGallerySection() {
     {
       id: 'ai-week-2024',
       name: 'AI Innovation Week',
+      organizerClub: 'AI Research Society',
       ideasPreserved: 18,
       date: 'Jan 2024',
       winners: [
-        { 
-          name: 'Priya Sharma', 
-          gmail: 'priya@gmail.com', 
-          linkedin: 'https://linkedin.com/in/priya' 
+        {
+          position: 1,
+          teamName: 'AI Pioneers',
+          idea: 'Dream Journal AI',
+          members: [
+            { name: 'Priya Sharma', email: 'priya@gmail.com', linkedin: 'https://linkedin.com/in/priya' }
+          ]
         },
-        { 
-          name: 'Rahul Singh', 
-          gmail: 'rahul@gmail.com', 
-          linkedin: 'https://linkedin.com/in/rahul' 
+        {
+          position: 2,
+          teamName: 'Neural Networks',
+          idea: 'Virtual Study Buddy',
+          members: [
+            { name: 'Rahul Singh', email: 'rahul@gmail.com', linkedin: 'https://linkedin.com/in/rahul' }
+          ]
         }
       ],
       memories: [
@@ -61,6 +81,7 @@ function MemoryCapsuleGallerySection() {
     {
       id: 'green-tech',
       name: 'Green Tech Challenge',
+      organizerClub: 'Environmental Club',
       ideasPreserved: 15,
       date: 'Dec 2023',
       winners: [],
@@ -78,24 +99,19 @@ function MemoryCapsuleGallerySection() {
         {events.map((event) => (
           <div
             key={event.id}
-            onClick={() => setSelectedEvent(event)}
+            onClick={() => navigate(`/event/${event.id}`)}
             className="capsule-card-clickable"
           >
-            <CapsuleCard
-              title={event.name}
-              ideasCount={event.ideasPreserved}
-              date={event.date}
-            />
+            <SpotlightCard spotlightColor="rgba(82, 39, 255, 0.15)">
+              <CapsuleCard
+                title={event.name}
+                ideasCount={event.ideasPreserved}
+                date={event.date}
+              />
+            </SpotlightCard>
           </div>
         ))}
       </div>
-
-      {selectedEvent && (
-        <CapsuleDetailsModal 
-          event={selectedEvent} 
-          onClose={() => setSelectedEvent(null)} 
-        />
-      )}
     </section>
   )
 }

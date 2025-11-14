@@ -3,7 +3,6 @@ import './CapsuleArchiveCard.css'
 function CapsuleArchiveCard({ title, ideasCount }) {
   return (
     <div className="capsule-archive-card">
-      <div className="capsule-icon">⭐</div>
       <div className="capsule-content">
         <h3 className="capsule-title">{title}</h3>
         <p className="capsule-ideas">{ideasCount} ideas</p>

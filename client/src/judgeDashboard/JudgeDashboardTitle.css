@@ -1,24 +1,70 @@
 .judge-dashboard-title {
-  margin-bottom: 30px;
+  margin-bottom: 5rem;
+  padding: 0;
+  background: transparent !important;
+  backdrop-filter: none;
+  border-radius: 0;
+  box-shadow: none !important;
+  border: none !important;
+  position: relative;
+  overflow: visible;
+  animation: fadeInUp 1s ease-out;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #424242;
-  margin: 0 0 10px 0;
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #7f5eff, #b97fff, #ff85b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200%;
+  letter-spacing: -2px;
+  animation: gradientMove 6s ease infinite;
+  color: #7f5eff;
+  opacity: 1;
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
 }
 
 .title-icon {
-  font-size: 36px;
+  font-size: 5rem;
 }
 
 .subtitle {
-  font-size: 16px;
-  color: #757575;
-  margin: 0;
+  font-size: 1.2rem;
+  opacity: 1;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.6;
+  font-weight: 400;
+  color: #666;
+  display: block;
+  text-align: center;
 }
 

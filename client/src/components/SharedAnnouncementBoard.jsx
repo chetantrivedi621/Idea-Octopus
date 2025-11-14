@@ -6,7 +6,6 @@ function SharedAnnouncementBoard({ announcements, onAddAnnouncement, canEdit = f
     <section className="shared-announcement-board-section">
       <div className="section-header">
         <h2 className="section-title">
-          <span className="section-icon">📢</span>
           Announcement Board
         </h2>
         {canEdit && (

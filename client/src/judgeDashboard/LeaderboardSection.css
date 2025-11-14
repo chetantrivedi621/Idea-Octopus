@@ -1,5 +1,11 @@
 .leaderboard-section {
-  margin-bottom: 30px;
+  margin-bottom: 0;
+  padding: 0;
+  background: transparent !important;
+  backdrop-filter: none;
+  border-radius: 0;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .leaderboard-list {
@@ -9,20 +15,21 @@
 }
 
 .leaderboard-row {
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   gap: 20px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   position: relative;
 }
 
 .leaderboard-row.has-score {
   border-left: 4px solid #2196f3;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .leaderboard-row.no-score {
@@ -31,8 +38,9 @@
 }
 
 .leaderboard-row:hover {
-  transform: translateX(4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .rank-circle {

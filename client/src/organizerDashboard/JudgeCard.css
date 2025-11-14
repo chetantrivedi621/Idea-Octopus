@@ -2,65 +2,134 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  border-radius: 8px;
-  background-color: #f5f5f5;
-  transition: background-color 0.2s;
+  padding: 20px 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.4s ease-out backwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.judge-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.judge-card:hover::before {
+  left: 100%;
 }
 
 .judge-card:hover {
-  background-color: #eeeeee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .judge-info {
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .judge-name {
-  font-size: 16px;
-  font-weight: 600;
-  color: #424242;
-  margin-bottom: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, #424242 0%, #1a1a1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .judge-email {
   font-size: 14px;
-  color: #757575;
+  color: #666;
+  font-weight: 500;
 }
 
 .judge-actions {
   display: flex;
   align-items: center;
   gap: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 .judge-status {
-  padding: 4px 12px;
-  border-radius: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .judge-status.active {
-  background-color: #c8e6c9;
-  color: #2e7d32;
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  animation: pulseStatus 2s ease-in-out infinite;
+}
+
+@keyframes pulseStatus {
+  0%, 100% {
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.5);
+  }
 }
 
 .judge-status.pending {
-  background-color: #fff9c4;
-  color: #f57f17;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  color: white;
 }
 
 .delete-button {
-  background: none;
-  border: none;
+  background: rgba(244, 67, 54, 0.1);
+  border: 2px solid rgba(244, 67, 54, 0.3);
+  border-radius: 8px;
   font-size: 18px;
   cursor: pointer;
-  padding: 4px;
-  transition: transform 0.2s;
+  padding: 8px 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
 }
 
 .delete-button:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(244, 67, 54, 0.2);
+  border-color: rgba(244, 67, 54, 0.5);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.delete-button:active {
+  transform: scale(0.95) rotate(-5deg);
 }
 

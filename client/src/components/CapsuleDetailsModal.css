@@ -9,8 +9,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 3000;
   animation: fadeIn 0.3s ease;
+  overflow: hidden;
 }
 
 @keyframes fadeIn {
@@ -31,8 +32,10 @@
   position: relative;
   max-height: 85vh;
   overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   animation: slideUp 0.3s ease;
+  z-index: 3001;
 }
 
 @keyframes slideUp {
@@ -102,6 +105,8 @@
 
 .capsule-modal-section {
   margin-bottom: 35px;
+  position: relative;
+  z-index: 1;
 }
 
 .capsule-section-title {
@@ -252,4 +257,5 @@
     gap: 10px;
   }
 }
+
 

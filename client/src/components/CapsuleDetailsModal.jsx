@@ -22,27 +22,33 @@ function CapsuleDetailsModal({ event, onClose }) {
             <p className="capsule-empty-state">No winners added yet.</p>
           ) : (
             <div className="winners-list">
-              {event.winners.map((winner, index) => (
-                <div key={index} className="winner-card">
-                  <div className="winner-rank">#{index + 1}</div>
-                  <div className="winner-info">
-                    <h4 className="winner-name">{winner.name}</h4>
-                    <div className="winner-contacts">
-                      <a href={`mailto:${winner.gmail}`} className="winner-link">
-                        📧 {winner.gmail}
-                      </a>
-                      <a 
-                        href={winner.linkedin} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="winner-link"
-                      >
-                        💼 LinkedIn
-                      </a>
+              {event.winners
+                .filter(winner => winner && winner.name) // Filter out null/undefined winners
+                .map((winner, index) => (
+                  <div key={`${winner.name}-${index}`} className="winner-card">
+                    <div className="winner-rank">#{index + 1}</div>
+                    <div className="winner-info">
+                      <h4 className="winner-name">{winner.name}</h4>
+                      <div className="winner-contacts">
+                        {winner.gmail && (
+                          <a href={`mailto:${winner.gmail}`} className="winner-link">
+                            📧 {winner.gmail}
+                          </a>
+                        )}
+                        {winner.linkedin && (
+                          <a 
+                            href={winner.linkedin} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="winner-link"
+                          >
+                            💼 LinkedIn
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           )}
         </div>

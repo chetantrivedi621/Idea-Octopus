@@ -37,7 +37,19 @@ const ideaSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
+})
+
+// Update updatedAt before saving
+ideaSchema.pre('save', function(next) {
+  if (this.isModified() && !this.isNew) {
+    this.updatedAt = new Date()
+  }
+  next()
 })
 
 const Idea = mongoose.model('Idea', ideaSchema)

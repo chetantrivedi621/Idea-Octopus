@@ -1,7 +1,7 @@
 // src/components/hero/Hero.jsx
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './hero.css'
+import './Hero.css'
 
 export default function Hero() {
   return (
@@ -38,11 +38,11 @@ export default function Hero() {
             </p>
 
             <div className="mt-8 flex gap-3">
-              <Link to="/add" className="inline-flex items-center px-5 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-500 text-white shadow-lg transform hover:scale-[1.02] transition">
-                Post an idea
+              <Link to="/ideas" className="inline-flex items-center px-5 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-purple-500 text-white shadow-lg transform hover:scale-[1.02] transition">
+                View Ideas
               </Link>
-              <Link to="/judge" className="inline-flex items-center px-4 py-3 rounded-full border border-slate-200 text-slate-800 hover:bg-slate-50 transition">
-                I'm a judge
+              <Link to="/dashboard" className="inline-flex items-center px-4 py-3 rounded-full border border-slate-200 text-slate-800 hover:bg-slate-50 transition">
+                Go to Dashboard
               </Link>
             </div>
 
