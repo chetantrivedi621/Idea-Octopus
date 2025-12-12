@@ -1,103 +1,270 @@
-﻿import React, { useEffect } from "react";
-import "../styles/Landingpage.css";
+﻿import React, { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Landingpage.css";
+
+const statTargets = {
+  teams: 420,
+  ideas: 12400,
+  minutes: 18,
+};
+
+const timeline = [
+  {
+    title: "Kickoff & Teaming",
+    desc: "Spin up squads, share prompts, and set focus areas in minutes.",
+    pulse: "Live onboarding lobby",
+  },
+  {
+    title: "Idea Storm",
+    desc: "AI whiteboards and sticky capsules to map problem → solution.",
+    pulse: "40+ ideas dropped",
+  },
+  {
+    title: "Build & Demo",
+    desc: "Task playlists, checkpoints, and mentor nudges keep momentum high.",
+    pulse: "12 demos scheduled",
+  },
+  {
+    title: "Judging & Awards",
+    desc: "Panel-ready decks, scoring sheets, and realtime leaderboards.",
+    pulse: "Scores syncing live",
+  },
+];
+
+const faqs = [
+  {
+    q: "Can I host my own hackathon on Idea-Octopus?",
+    a: "Yes. Create an organizer account, publish rounds, invite teams, and track progress with live timelines and scoring.",
+  },
+  {
+    q: "Does it work for remote events?",
+    a: "Absolutely. Everything runs in-browser with live updates, timers, and shared boards that sync automatically.",
+  },
+  {
+    q: "How do judges collaborate?",
+    a: "Share judge links, drop rubric scores, add comments, and see auto-aggregated totals in one place.",
+  },
+  {
+    q: "Is there AI help?",
+    a: "Use AI to expand ideas, tidy pitches, and generate summaries for every capsule and board.",
+  },
+];
 
 export default function LandingPage() {
   const navigate = useNavigate();
-  
-  // ✅ FIXED PARALLAX → Now applies only to elements with data-parallax="true"
+  const [counters, setCounters] = useState({ teams: 0, ideas: 0, minutes: 0 });
+  const [activeStage, setActiveStage] = useState(0);
+  const [activeCard, setActiveCard] = useState(0);
+  const [openFaq, setOpenFaq] = useState(0);
+
+  // Animate counters once on mount
+  useEffect(() => {
+    const start = performance.now();
+    const duration = 1200;
+
+    const step = (time) => {
+      const progress = Math.min((time - start) / duration, 1);
+      setCounters({
+        teams: Math.floor(progress * statTargets.teams),
+        ideas: Math.floor(progress * statTargets.ideas),
+        minutes: Math.floor(progress * statTargets.minutes),
+      });
+
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
+  }, []);
+
+  // Rotate timeline cards automatically
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveStage((prev) => (prev + 1) % timeline.length);
+    }, 3800);
+    return () => clearInterval(id);
+  }, []);
+
+  // Soft parallax for hero chips
   useEffect(() => {
     const items = document.querySelectorAll("[data-parallax='true']");
-
     const handleScroll = () => {
       const scrollY = window.scrollY;
       items.forEach((item) => {
-        const depth = item.getAttribute("data-depth") || 0;
+        const depth = Number(item.getAttribute("data-depth") || 0);
         const movement = scrollY * depth;
-
-        item.style.transform = `
-          translateY(${movement}px)
-          rotateY(${movement / 40}deg)
-          rotateX(${movement / 60}deg)
-        `;
+        item.style.transform = `translateY(${movement}px)`;
       });
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const spotlight = useMemo(
+    () => [
+      {
+        title: "Live Idea Board",
+        tag: "Shared in real-time",
+        points: ["Sticky notes & emoji votes", "AI expands prompts", "Branch & link ideas"],
+      },
+      {
+        title: "Memory Capsules",
+        tag: "Story ready",
+        points: ["Auto save key steps", "Pin demos & media", "Timeline of breakthroughs"],
+      },
+      {
+        title: "Judging Space",
+        tag: "For panels",
+        points: ["Rubrics per round", "Smart totals", "Shareable PDFs"],
+      },
+    ],
+    []
+  );
+
   return (
     <div className="lp-wrapper">
+      <header className="lp-nav">
+        <div className="brand">
+          <div className="brand-dot" />
+          <span>Idea-Octopus</span>
+          <span className="pill-beta">Beta live</span>
+        </div>
+        <nav>
+          <a href="#features">Features</a>
+          <a href="#flow">Flow</a>
+          <a href="#gallery">Capsules</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div className="nav-actions">
+          <button className="ghost" onClick={() => navigate("/login")}>
+            Sign in
+          </button>
+          <button className="solid" onClick={() => navigate("/signup")}>
+            Launch event
+          </button>
+        </div>
+      </header>
 
-      {/* ✅ HERO SECTION */}
-      <section className="hero-section reveal">
-        
+      <section className="hero-section">
         <div className="hero-left">
-          <h1 className="hero-title">
-            Ideas fade. <br />
-            <span>Memories shouldn't.</span>
+          <div className="eyebrow">Hackathons move fast. Your ideas shouldn’t slip.</div>
+          <h1>
+            Host, ideate, and judge on
+            <span className="grad"> one collaborative canvas.</span>
           </h1>
-
-          <p className="hero-sub">
-            Capture your hackathon journey from brainstorm to breakthrough with
-            Idea-Octopus. Never lose a spark of genius again.
+          <p>
+            Idea-Octopus is the interactive HQ for hackathons. Capture sparks, build in public, and
+            keep every team, judge, and mentor in sync.
           </p>
+          <div className="hero-ctas">
+            <button className="solid" onClick={() => navigate("/signup")}>
+              Start free workspace
+            </button>
+            <Link to="/ideas" className="ghost-link">
+              Peek inside →
+            </Link>
+          </div>
 
-          <div className="hero-buttons">
-            <Link to="/login" className="btn-primary">Get Started</Link>
-            <Link to="/ideas" className="btn-link">How it works →</Link>
+          <div className="hero-stats">
+            <div className="stat-card">
+              <span className="label">Teams onboarded</span>
+              <strong>{counters.teams}+</strong>
+              <small>Auto-provisioned with boards & tracks</small>
+            </div>
+            <div className="stat-card">
+              <span className="label">Ideas captured</span>
+              <strong>{counters.ideas.toLocaleString()}+</strong>
+              <small>Smart clustering & quick pitch drafts</small>
+            </div>
+            <div className="stat-card">
+              <span className="label">Setup time</span>
+              <strong>{counters.minutes} min</strong>
+              <small>From signup to ready-to-run event</small>
+            </div>
           </div>
         </div>
 
         <div className="hero-right">
-
-          {/* ✅ REMOVED 3 FLOATING BUBBLES */}
-
-          {/* ✅ ADDED YOUR HERO IMAGE */}
-          <img
-            src="/images/hero.png"
-            className="hero-main-img"
-            alt="HackCapsule Hero"
-          />
-
+          <div className="glass live-board" data-parallax="true" data-depth="0.12">
+            <div className="live-head">
+              <span className="dot green" />
+              <span className="dot amber" />
+              <span className="dot red" />
+              <span className="live-pill">Live board</span>
+            </div>
+            <div className="live-body">
+              <div className="live-column">
+                <p className="chip chip-green">Idea storm</p>
+                <p className="chip chip-blue">Prototype</p>
+                <p className="chip chip-lilac">Demo prep</p>
+              </div>
+              <div className="live-column">
+                {spotlight[activeCard].points.map((p, idx) => (
+                  <div key={p} className={`pulse-card pulse-${idx}`}>
+                    <span>{p}</span>
+                    <span className="micro-tag">synced</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="live-footer">
+              {spotlight.map((item, i) => (
+                <button
+                  key={item.title}
+                  className={`tab ${i === activeCard ? "active" : ""}`}
+                  onClick={() => setActiveCard(i)}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="orb orb-1 floating" />
+          <div className="orb orb-2 floating delay-1" />
+          <div className="orb orb-3 floating delay-2" />
         </div>
       </section>
-      {/* ✅ FEATURES */}
-      <section className="features-section reveal">
-        <h2 className="section-title">
-          What <span>we provide?</span>
-        </h2>
 
-        <p className="section-sub">
-          Everything you need to ideate, collaborate, and create — in one place.
-        </p>
-
+      <section id="features" className="features-section">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Built for organizers, teams, and judges</p>
+            <h2>
+              Everything in one place<span className="grad"> — zero switching.</span>
+            </h2>
+          </div>
+          <Link to="/login" className="ghost-link">
+            Jump into dashboard →
+          </Link>
+        </div>
         <div className="features-grid">
           {[
             {
-              icon: "/images/board.png",
-              title: "AI Idea Board",
-              desc: "Never let a creative block stop you again. Capture ideas instantly.",
+              title: "Real-time idea board",
+              desc: "Sticky notes, votes, branches, and mentions with instant sync.",
             },
             {
-              icon: "/images/memory.png",
-              title: "Memory Capsules",
-              desc: "Snapshots of your thought process, inspirations & breakthroughs.",
+              title: "Memory capsules",
+              desc: "Auto-save breakthroughs, demos, and references as a story.",
             },
             {
-              icon: "/images/team.png",
-              title: "Team Clusters",
-              desc: "A visual space for your team's ideas, notes & thought chains.",
+              title: "Judge workspace",
+              desc: "Rubrics per round, scoring sheets, exportable summaries.",
             },
             {
-              icon: "/images/pitch.png",
-              title: "Pitch Generator",
-              desc: "Turn any idea into a presentation-ready pitch in seconds.",
+              title: "AI copilots",
+              desc: "Expand prompts, tidy pitches, and summarize discussions.",
             },
-          ].map((item, i) => (
-            <div key={i} className="feature-card tilt">
-              <img src={item.icon} className="icon-uniform" alt={item.title} />
+            {
+              title: "Event timeline",
+              desc: "Rounds, clocks, and status chips that update live for everyone.",
+            },
+            {
+              title: "Team console",
+              desc: "Track tasks, uploads, and submissions without leaving the board.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="feature-card" onMouseEnter={() => setActiveCard(0)}>
+              <div className="pill-light">New</div>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
             </div>
@@ -105,134 +272,148 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ✅ SHOWCASE LEFT — PARALLAX REMOVED */}
-      <section className="showcase reveal">
-        <img
-          src="/images/showcase1.png"
-          className="show-img uniform-img"
-          alt="showcase"
-        />
-
-        <div className="show-text">
-          <h2>From Chaos to Clarity</h2>
-          <p>
-            Our AI Idea Board helps you connect the dots. Transform raw thoughts
-            into clear concepts, with branches for every pivot and possibility.
-          </p>
-          <Link to="/ideas" className="btn-secondary">Explore Features</Link>
+      <section id="flow" className="flow-section">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Flow</p>
+            <h2>Guide every round without spreadsheets.</h2>
+          </div>
+          <div className="timer-chip">
+            <span className="dot green" />
+            Autopilot reminders on
+          </div>
         </div>
-      </section>
-
-      {/* ✅ SHOWCASE RIGHT — PARALLAX REMOVED */}
-      <section className="showcase showcase-right reveal">
-        <div className="show-text">
-          <h2>Your Project's Story</h2>
-          <p>
-            Memory Capsules create a visual diary of your hackathon. Relive the
-            late-night coding sessions and breakthrough moments that defined
-            your project.
-          </p>
-          <Link to="/ideas" className="btn-secondary">See it in Action</Link>
-        </div>
-
-        <img 
-          src="/images/showcase2.png"
-          className="show-img uniform-img"
-          alt="showcase"
-        />
-      </section>
-
-      {/* ✅ TESTIMONIALS */}
-      <section className="testimonials-section reveal">
-        <h2 className="section-title">What Hackers Say</h2>
-        <p className="section-sub">
-          Our customers are happy with our service.
-        </p>
-
-        <div className="testimonials-grid">
-          {[
-            {
-              name: "Alex Chen",
-              title: "Winner, Techfest 2025",
-              review:
-                "Idea-Octopus was a game-changer. We saved ideas, tracked progress and built better together.",
-              img: "https://i.pinimg.com/736x/66/9c/54/669c544a73bbb2ee9b0ca8369c36c658.jpg",
-            },
-            {
-              name: "Jasmine Reid",
-              title: "Finalist, AI x Innovate",
-              review:
-                "The Memory Capsules drove our entire story. It's insane how much clarity it brought.",
-              img: "https://i.pinimg.com/736x/6c/c3/10/6cc3105d363ad351285c5f0cfb377da1.jpg",
-            },
-            {
-              name: "Sam Rivera",
-              title: "Lead Developer, ConnectSphere",
-              review:
-                "The AI idea board is scary good. It suggested an angle we never thought of — which became our core pitch.",
-              img: "https://i.pinimg.com/1200x/9e/63/18/9e63183d99d484e56e0ef47a9251317a.jpg",
-            },
-          ].map((t, i) => (
-            <div key={i} className="testimonial-card fade-up">
-              <p className="review">"{t.review}"</p>
-              <div className="user">
-                <img src={t.img} className="user-img-uniform" alt={t.name} />
-                <div>
-                  <h4>{t.name}</h4>
-                  <span>{t.title}</span>
-                </div>
+        <div className="timeline">
+          <div className="timeline-tabs">
+            {timeline.map((stage, i) => (
+              <button
+                key={stage.title}
+                className={`timeline-tab ${i === activeStage ? "active" : ""}`}
+                onClick={() => setActiveStage(i)}
+              >
+                {stage.title}
+              </button>
+            ))}
+          </div>
+          <div className="timeline-body">
+            <div className="timeline-card">
+              <div className="micro-tag">{timeline[activeStage].pulse}</div>
+              <h3>{timeline[activeStage].title}</h3>
+              <p>{timeline[activeStage].desc}</p>
+              <div className="timeline-progress">
+                <span style={{ width: `${((activeStage + 1) / timeline.length) * 100}%` }} />
               </div>
+              <div className="timeline-actions">
+                <button className="solid ghostish" onClick={() => navigate("/dashboard")}>
+                  Open dashboard
+                </button>
+                <button className="ghost" onClick={() => navigate("/login")}>
+                  Invite judges
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" className="capsule-section">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Story-first views</p>
+            <h2>Capsules that feel alive.</h2>
+          </div>
+          <span className="pill-beta">Auto summary</span>
+        </div>
+        <div className="capsule-grid">
+          {spotlight.map((item, i) => (
+            <div key={item.title} className={`capsule-card ${activeCard === i ? "active" : ""}`}>
+              <div className="capsule-top">
+                <div className="pill-light">{item.tag}</div>
+                <h3>{item.title}</h3>
+              </div>
+              <ul>
+                {item.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+              <button className="ghost-link" onClick={() => setActiveCard(i)}>
+                Highlight
+              </button>
             </div>
           ))}
         </div>
       </section>
 
-     <section className="cta-section reveal">
-  <h2>
-    Create your own hackathon <br />
-  </h2>
-
-  <p>
-    Start your journey with a single click. Organize your event, manage teams,
-    and bring your hackathon vision to life.
-  </p>
-
-  {/* ✅ Button — NO LINK, NO NAVIGATION */}
-  <button className="btn-dark glow" onClick={() => navigate("/signup")}>
-    Join as Organizer
-  </button>
-</section>
-
-
-      {/* ✅ FOOTER */}
-      <footer className="footer reveal">
-        <div className="footer-cols">
+      <section id="faq" className="faq-section">
+        <div className="section-head">
           <div>
-            <h3>HackCapsule</h3>
-            <p>
-              The ultimate collaboration tool for hackathons. Capture ideas,
-              track progress, and build amazing things together.
-            </p>
+            <p className="eyebrow">FAQs</p>
+            <h2>Everything you need to start today.</h2>
           </div>
+          <button className="solid" onClick={() => navigate("/signup")}>
+            Create organizer account
+          </button>
+        </div>
+        <div className="faq-grid">
+          {faqs.map((item, idx) => (
+            <div
+              key={item.q}
+              className={`faq-card ${openFaq === idx ? "open" : ""}`}
+              onClick={() => setOpenFaq((prev) => (prev === idx ? -1 : idx))}
+            >
+              <div className="faq-q">
+                <span>{item.q}</span>
+                <span>{openFaq === idx ? "−" : "+"}</span>
+              </div>
+              {openFaq === idx && <p className="faq-a">{item.a}</p>}
+            </div>
+          ))}
+        </div>
+      </section>
 
+      <section className="cta-section">
+        <div>
+          <p className="eyebrow">Ready to launch?</p>
+          <h2>
+            Spin up your hackathon workspace in minutes.
+            <span className="grad"> No waitlists.</span>
+          </h2>
+        </div>
+        <div className="cta-actions">
+          <button className="solid" onClick={() => navigate("/signup")}>
+            Start organizing
+          </button>
+          <button className="ghost" onClick={() => navigate("/login")}>
+            Join an existing event
+          </button>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="footer-inner">
           <div>
-            <h4>Product</h4>
-            <a>Features</a>
-            <a>Templates</a>
-            <a>Pricing</a>
+            <div className="brand">
+              <div className="brand-dot" />
+              <span>Idea-Octopus</span>
+            </div>
+            <p>Build, judge, and remember every idea without losing momentum.</p>
           </div>
-
-          <div>
-            <h4>Company</h4>
-            <a>About</a>
-            <a>Careers</a>
-            <a>Contact</a>
+          <div className="footer-links">
+            <div>
+              <h4>Product</h4>
+              <a href="#features">Features</a>
+              <a href="#flow">Flow</a>
+              <a href="#gallery">Capsules</a>
+            </div>
+            <div>
+              <h4>Access</h4>
+              <a onClick={() => navigate("/login")}>Sign in</a>
+              <a onClick={() => navigate("/signup")}>Create account</a>
+              <Link to="/dashboard">Dashboard</Link>
+            </div>
           </div>
         </div>
-
-        <div className="footer-bottom">
-          © 2024 HackCapsule. All rights reserved.
-        </div>
+        <div className="footer-bottom">© 2025 Idea-Octopus. Built for hackathons.</div>
       </footer>
     </div>
   );
